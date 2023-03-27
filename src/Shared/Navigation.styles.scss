@@ -1,0 +1,62 @@
+@import url('https://fonts.googleapis.com/css2?family=Delicious+Handrawn&display=swap');
+
+a{
+  text-decoration: none;
+  color: white;
+}
+
+.main-title{
+  font-family: "Delicious Handrawn", sans-serif;
+}
+
+.navigation {
+  background-color: #19A7CE;
+  font-size: 1.5rem;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .logo-container {
+    height: 100%;
+    width: 70px;
+    padding: 25px;
+  }
+
+  .nav-links-container {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+    .nav-link {
+      border-radius: 1.5rem 1.5rem 0 0;
+      padding: 25px 30px;
+      cursor: pointer;
+    }
+  }
+
+  // .search-box-container{
+  //   justify-content:center;
+  //   padding: 10px 15px;
+  //   grid-template-rows: 1fr 1fr;
+  //   input{
+  //     border: 1px solid #F8A92E;
+  //     border-radius: 0.5rem;
+  //     height: 3rem;
+  //     width: 15rem;
+  //   }
+  //   button{
+  //     padding-top: 0.3rem;
+  //     margin-left: -6.5rem;
+  //     position: absolute;
+  //     font-size: 1.5rem;
+  //     border: none;
+  //     background-color: transparent;
+  //     color: #F8A92E;
+  //     font-family: 'Kanit', sans-serif;
+  //   }
+  // }
+}
