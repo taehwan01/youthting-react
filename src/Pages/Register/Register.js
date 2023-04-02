@@ -5,7 +5,7 @@ import { Link, useNavigate } from 'react-router-dom';
 
 import UserLogin from '../../Components/UserLogin/UserLogin.js';
 
-const Login = () => {
+const Register = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
@@ -17,7 +17,7 @@ const Login = () => {
       <UserLogin>
         <div className='login-contents'>
           <div style={{ marginTop: '-2rem' }}>
-            <h1>Login Youthting</h1>
+            <h1>Register Youthting</h1>
             <form>
               <input
                 type='text'
@@ -39,7 +39,7 @@ const Login = () => {
               />
               <br />
               <button disabled={loading} className='login-button'>
-                {loading ? '로그인 중 ...' : '로그인하기 !'}
+                {loading ? '가입 중 ...' : '가입하기 !'}
               </button>
             </form>
           </div>
@@ -53,8 +53,8 @@ const Login = () => {
             alignItems: 'center',
           }}
         >
-          <Link className='register-button' to='/register'>
-            계정이 없으신가요 ?
+          <Link className='register-button' to='/login'>
+            계정이 이미 있으신가요 ?
           </Link>
         </div>
       </UserLogin>
@@ -62,4 +62,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Register;

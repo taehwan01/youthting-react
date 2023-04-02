@@ -1,6 +1,6 @@
 import { Link, NavLink } from 'react-router-dom';
 
-import './Navigation.styles.scss';
+import './Navigation.scss';
 
 const Navigation = () => {
   return (
@@ -15,7 +15,7 @@ const Navigation = () => {
         <NavLink className='nav-link' to='/store-search'>
           매장찾기
         </NavLink>
-        <NavLink className='nav-link' to='/store-search'>
+        <NavLink className='nav-link' to='/login'>
           사용자
         </NavLink>
       </div>
