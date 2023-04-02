@@ -11,9 +11,11 @@ function App() {
   return (
     <div className='App'>
       <Navigation />
+      <hr />
       <div className='contents'>
         <Routes>
           <Route path='/' element={<Home />}></Route>
+          <Route path='/login' element={<Home />}></Route>
           <Route path='/date-search' element={<DateSearch />}></Route>
           <Route path='/store-search' element={<StoreSearch />}></Route>
           <Route path='*' element={<Navigate to='/' replace />} />

@@ -1,53 +1,28 @@
-.home-page{
+.home-banner{
     min-height: 50vh;
     width: 100%;
-    background-color: #19A7CE;
-    // background: linear-gradient(180deg, #19A7CE, 90%, transparent);
-    h1{
-        margin: 0;
-    }
-    color: white;
+    background-color: white;
     display: grid;
-    grid-template-columns: 10fr 1fr 10fr;
-}
-
-.home-message-div{
-    width: 100%;
-    display: grid;
-    grid-template-rows: 1fr 1fr 1fr 1fr;
-    .home-message{
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        text-align: center;
-    }
-}
-
-.arrow{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-.register{
-    display: grid;
-    grid-template-rows: 1fr 5fr 1fr;
-    .form{
+    grid-template-columns: 1fr 1fr;
+    .banner-title{
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        input{
-            width: 15rem;
-            margin: 10px 0;
-            padding: 0.5rem 1rem;
-            border: 1px solid white;
-            border-radius: 0 5px 0 5px;
+        .start{
+            padding: 0.5rem 2rem;
+            border: 1px solid black;
+            cursor: pointer;
         }
-        button{
-            margin: 10px 0;
+        .start:hover{
+            background-color: black;
+            color: white;
         }
+    }
+    .banner-image{
+        background: url('../../Images/youthting3.jpeg');
+        background-position: center;
+        background-size: cover;
     }
 }
 
@@ -63,6 +38,9 @@
             background-position: center center;
             width: 10rem;
             height: 10rem;
+        }
+        .user-review-info{
+            margin-left: 2rem;
         }
     }
 }

@@ -15,6 +15,9 @@ const Navigation = () => {
         <NavLink className='nav-link' to='/store-search'>
           매장찾기
         </NavLink>
+        <NavLink className='nav-link' to='/store-search'>
+          사용자
+        </NavLink>
       </div>
     </div>
   );
