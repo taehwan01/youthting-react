@@ -6,8 +6,15 @@ import { Link, useNavigate } from 'react-router-dom';
 import UserLogin from '../../Components/UserLogin/UserLogin.js';
 
 const Register = () => {
+  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [gender, setGender] = useState('');
+  const [school, setSchool] = useState('');
+  const [height, setHeight] = useState('');
+  const [mbti, setMbti] = useState('');
+  const [description, setDescription] = useState('');
+
   const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
@@ -15,10 +22,19 @@ const Register = () => {
   return (
     <div>
       <UserLogin>
-        <div className='login-contents'>
+        <div className='register-contents'>
           <div style={{ marginTop: '-2rem' }}>
             <h1>Register Youthting</h1>
             <form>
+              <input
+                type='text'
+                placeholder='이름 입력'
+                className='login-input'
+                required
+                value={password}
+                onChange={(event) => setName(event.target.value)}
+              />
+              <br />
               <input
                 type='text'
                 placeholder='이메일 입력'
@@ -36,6 +52,39 @@ const Register = () => {
                 required
                 value={password}
                 onChange={(event) => setPassword(event.target.value)}
+              />
+              <br />
+              <div className='radio-button'>
+                <input
+                  type='radio'
+                  className='login-input'
+                  required
+                  value='male'
+                  onChange={(event) => setGender(event.target.value)}
+                  style={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                  }}
+                />
+                남성
+                <input
+                  type='radio'
+                  className='login-input'
+                  required
+                  value='female'
+                  onChange={(event) => setGender(event.target.value)}
+                />
+                여성
+              </div>
+              <br />
+              <input
+                type='text'
+                className='login-input'
+                required
+                autoFocus
+                value={school}
+                onChange={(event) => setSchool(event.target.value)}
               />
               <br />
               <button disabled={loading} className='login-button'>

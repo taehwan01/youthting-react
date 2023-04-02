@@ -29,6 +29,16 @@
             justify-content: center;
             color: black;
         }
+        .register-contents{
+            box-sizing: border-box;
+            width: 25rem;
+            height: 25rem;
+            border: 0.1rem solid black;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            color: black;
+        }
     }
 }
 
@@ -58,4 +68,9 @@
     color: black;
     border: 0.1rem solid black;
     background-color: transparent;
+}
+
+.radio-button{
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr 2fr;
 }
