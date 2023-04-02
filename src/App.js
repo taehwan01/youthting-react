@@ -6,6 +6,7 @@ import Navigation from './Shared/Navigation';
 
 import './App.scss';
 import StoreSearch from './Pages/StoreSearch/StoreSearch';
+import Login from './Pages/Login/Login';
 
 function App() {
   return (
@@ -15,7 +16,7 @@ function App() {
       <div className='contents'>
         <Routes>
           <Route path='/' element={<Home />}></Route>
-          <Route path='/login' element={<Home />}></Route>
+          <Route path='/login' element={<Login />}></Route>
           <Route path='/date-search' element={<DateSearch />}></Route>
           <Route path='/store-search' element={<StoreSearch />}></Route>
           <Route path='*' element={<Navigate to='/' replace />} />
