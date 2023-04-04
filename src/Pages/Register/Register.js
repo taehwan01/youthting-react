@@ -56,7 +56,7 @@ const Register = () => {
               <br />
               <div className='radio-button'>
                 <input
-                  type='radio'
+                  type='checkbox'
                   className='login-input'
                   required
                   value='male'
@@ -69,7 +69,7 @@ const Register = () => {
                 />
                 남성
                 <input
-                  type='radio'
+                  type='checkbox'
                   className='login-input'
                   required
                   value='female'

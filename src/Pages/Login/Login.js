@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-// import axios from 'axios';
-// import toast from 'react-hot-toast';
+import axios from 'axios';
+import toast from 'react-hot-toast';
 
 import UserLogin from '../../Components/UserLogin/UserLogin.js';
 
@@ -12,13 +12,33 @@ const Login = () => {
 
   const navigate = useNavigate();
 
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    try {
+      setLoading(true);
+      const { data } = await axios.post(`http://localhost:3000/login`, {
+        email,
+        password,
+      });
+      if (data?.error) {
+        toast.error(data.error);
+      } else {
+        toast.success('로그인 성공!');
+        navigate('/');
+      }
+    } catch (err) {
+      console.log(err);
+    }
+    setLoading(false);
+  };
+
   return (
     <div>
       <UserLogin>
         <div className='login-contents'>
           <div style={{ marginTop: '-2rem' }}>
             <h1>Login Youthting</h1>
-            <form>
+            <form onSubmit={handleSubmit}>
               <input
                 type='text'
                 placeholder='이메일 입력'
