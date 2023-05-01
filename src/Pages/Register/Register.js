@@ -9,7 +9,7 @@ const Register = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [gender, setGender] = useState('');
+  const [gender, setGender] = useState('male');
   const [school, setSchool] = useState('');
   const [height, setHeight] = useState('');
   const [mbti, setMbti] = useState('');
@@ -40,7 +40,6 @@ const Register = () => {
                 placeholder='이메일 입력'
                 className='login-input'
                 required
-                autoFocus
                 value={email}
                 onChange={(event) => setEmail(event.target.value)}
               />
@@ -54,35 +53,31 @@ const Register = () => {
                 onChange={(event) => setPassword(event.target.value)}
               />
               <br />
-              <div className='radio-button'>
+              <label className='radio-buttons'>
                 <input
-                  type='checkbox'
-                  className='login-input'
-                  required
+                  type='radio'
+                  className=''
                   value='male'
+                  checked={gender === 'male'}
                   onChange={(event) => setGender(event.target.value)}
-                  style={{
-                    display: 'flex',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                  }}
                 />
                 남성
                 <input
-                  type='checkbox'
-                  className='login-input'
-                  required
+                  type='radio'
+                  className=''
                   value='female'
+                  checked={gender === 'female'}
                   onChange={(event) => setGender(event.target.value)}
+                  style={{ marginLeft: '5rem' }}
                 />
                 여성
-              </div>
+              </label>
               <br />
               <input
                 type='text'
                 className='login-input'
+                placeholder='학교명 입력'
                 required
-                autoFocus
                 value={school}
                 onChange={(event) => setSchool(event.target.value)}
               />

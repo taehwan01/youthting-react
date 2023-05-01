@@ -70,7 +70,10 @@
     background-color: transparent;
 }
 
-.radio-button{
-    display: grid;
-    grid-template-columns: 1fr 2fr 1fr 2fr;
+.radio-buttons{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.4rem;
 }
