@@ -3,9 +3,12 @@ import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import toast from 'react-hot-toast';
 
+import { useAuth } from '../../Context/Auth.js';
 import UserLogin from '../../Components/UserLogin/UserLogin.js';
 
 const Login = () => {
+  const [auth, setAuth] = useAuth();
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
@@ -16,7 +19,7 @@ const Login = () => {
     event.preventDefault();
     try {
       setLoading(true);
-      const { data } = await axios.post(`http://localhost:8080/login`, {
+      const { data } = await axios.post(`/login`, {
         email,
         password,
       });

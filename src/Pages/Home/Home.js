@@ -56,13 +56,14 @@ const Home = () => {
               navigate('/login');
             }}
           >
-            시작하기 !
+            로그인 !
           </h1>
         </div>
         <div className='banner-image'></div>
       </div>
       <hr />
-      <div style={{ marginTop: '2.5rem' }}>
+      <div>***Content currently empty</div>
+      {/* <div style={{ marginTop: '2.5rem' }}>
         <h1 style={{ marginLeft: '5rem' }}>후기</h1>
         <div className='reviews'>
           {dummyData.map((user) => {
@@ -78,7 +79,7 @@ const Home = () => {
             );
           })}
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };
