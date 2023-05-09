@@ -45,6 +45,7 @@ const Login = () => {
           <form onSubmit={handleSubmit}>
             <input
               type='text'
+              className='input-text'
               placeholder='이메일 입력'
               required
               autoFocus
@@ -54,18 +55,21 @@ const Login = () => {
             <br />
             <input
               type='password'
+              className='input-text'
               placeholder='비밀번호 입력'
               required
               value={password}
               onChange={(event) => setPassword(event.target.value)}
             />
             <br />
-            <button disabled={loading}>
+            <button className='login-button' disabled={loading}>
               {loading ? '로그인 중 ...' : '로그인하기 !'}
             </button>
           </form>
         </div>
-        <Link to='/register'>계정이 없으신가요 ?</Link>
+        <Link className='to-register' to='/register'>
+          계정이 없으신가요 ?
+        </Link>
       </div>
     </>
   );
