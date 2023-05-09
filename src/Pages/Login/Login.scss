@@ -28,9 +28,14 @@
 }
 
 .to-register{
-    border: 1px solid black;
+    border: 1px solid gray;
     font-size: 1.4rem;
-    color: black;
+    color: gray;
     text-decoration-line: none;
     padding: 0 1rem;
+}
+
+.to-register:hover{
+    border: 1px solid black;
+    color: black;
 }
