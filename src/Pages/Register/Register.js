@@ -3,14 +3,28 @@ import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import toast from 'react-hot-toast';
 
-import { useAuth } from '../../Context/Auth.js';
-
 import './Register.scss';
 
-const Register = () => {
-  // auth context
-  const [auth, setAuth] = useAuth();
+const mbtiOptions = [
+  'ENFJ',
+  'ENFP',
+  'ENTJ',
+  'ENTP',
+  'ESFJ',
+  'ESFP',
+  'ESTJ',
+  'ESTP',
+  'INFJ',
+  'INFP',
+  'INTJ',
+  'INTP',
+  'ISFJ',
+  'ISTJ',
+  'ISFP',
+  'ISTP',
+];
 
+const Register = () => {
   // state
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -18,11 +32,13 @@ const Register = () => {
   const [name, setName] = useState('');
   const [gender, setGender] = useState('');
   const [age, setAge] = useState('');
-  const [univAddress, setUnivAddress] = useState('');
-  const [univName, setUnivName] = useState('');
+  const [univAddress, setUnivAddress] =
+    useState('서울특별시 성북구 서경로 124');
+  const [univName, setUnivName] = useState('서경대학교');
   const [height, setHeight] = useState('');
   const [MBTI, setMBTI] = useState('');
   const [introduction, setIntroduction] = useState('');
+  const [profileImage, setProfileImage] = useState('');
   const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
@@ -31,10 +47,26 @@ const Register = () => {
     event.preventDefault();
     try {
       setLoading(true);
-      const { data } = await axios.post(`/register`, {
-        // email,
-        // password,
-      });
+      const formdata = new FormData();
+      formdata.append('proFilePicture', profileImage[0]);
+      formdata.append(
+        'userJoinDto',
+        JSON.stringify({
+          email,
+          password,
+          name,
+          age,
+          gender,
+          univAddress,
+          univName,
+          height,
+          MBTI,
+          introduction,
+        }),
+      );
+      console.log(formdata);
+
+      const { data } = await axios.post(`/add`, formdata, config);
       if (data?.error) {
         toast.error(data.error);
       } else {
@@ -54,7 +86,7 @@ const Register = () => {
         <h1 style={{ marginBottom: '1rem' }}>Register Youthting</h1>
         <div className='register-contents'>
           <div className='register-form' style={{ paddingLeft: '5rem' }}>
-            <form>
+            <form onSubmit={handleSubmit}>
               <input
                 type='text'
                 className='input-text'
@@ -79,7 +111,7 @@ const Register = () => {
                 className='input-text'
                 placeholder='비밀번호 확인'
                 required
-                value={password}
+                value={confirmPassword}
                 onChange={(event) => setConfirmPassword(event.target.value)}
               />
               <br />
@@ -114,39 +146,69 @@ const Register = () => {
                 <label className='radio-label'>여성</label>
               </div>
               <input
-                type='text'
+                type='number'
                 className='input-text'
                 placeholder='나이 입력'
                 required
                 value={age}
-                onChange={(event) => setAge(event.target.value)}
+                onChange={(event) => {
+                  setAge(event.target.value);
+                }}
               />
               <br />
               <input
-                type='text'
+                type='number'
                 className='input-text'
                 placeholder='키 입력'
                 required
                 value={height}
                 onChange={(event) => setHeight(event.target.value)}
               />
-              <input
+              {/* <input
                 type='text'
                 className='input-text'
                 placeholder='MBTI 입력'
                 required
                 value={MBTI}
                 onChange={(event) => setMBTI(event.target.value)}
-              />
+              /> */}
+              <br />
+              <select
+                className='select-mbti'
+                onChange={(event) => setMBTI(event.target.value)}
+                value={MBTI}
+              >
+                <option className='option-mbti' value='none'>
+                  MBTI를 골라주세요.
+                </option>
+                {mbtiOptions.map((mbti, index) => {
+                  return (
+                    <option className='option-mbti' value={mbti} key={index}>
+                      {mbti}
+                    </option>
+                  );
+                })}
+              </select>
             </form>
           </div>
           <div className='register-form' style={{ paddingRight: '5rem' }}>
-            <form>
+            <form onSubmit={handleSubmit}>
+              <input
+                type='file'
+                style={{ marginBottom: '0.7rem' }}
+                onChange={(event) => {
+                  setProfileImage(event.target.files);
+                }}
+              />
+              <br />
               <textarea
                 className='input-textarea'
                 cols='23'
-                rows='10'
+                rows='9'
                 placeholder='자기소개 입력'
+                onChange={(event) => {
+                  setIntroduction(event.target.value);
+                }}
               ></textarea>
               {/* <input
                 type='textarea'
