@@ -27,7 +27,8 @@ const Login = () => {
       if (data?.error) {
         toast.error(data.error);
       } else {
-        console.log(data);
+        setAuth(email);
+        localStorage.setItem('auth', JSON.stringify(email));
         toast.success('로그인 성공!');
         navigate('/');
       }
