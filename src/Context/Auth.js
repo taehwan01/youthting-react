@@ -6,7 +6,13 @@ const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
   const [auth, setAuth] = useState({
-    user: null,
+    name: null,
+    password: null,
+    height: null,
+    mbti: null,
+    univName: null,
+    email: null,
+    storeProfileName: null,
   });
 
   useEffect(() => {

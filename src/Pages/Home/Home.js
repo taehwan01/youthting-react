@@ -4,21 +4,42 @@ import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 
 import './Home.scss';
 import { useAuth } from '../../Context/Auth';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 const Home = () => {
   // context
   const [auth, setAuth] = useAuth();
 
+  // state
+  const [userInfo, setUserInfo] = useState({});
+
   // hooks
   const navigate = useNavigate();
+
+  useEffect(() => {
+    setUserInfo(auth);
+  }, []);
+
+  const handleLogout = () => {
+    setAuth({
+      name: null,
+      password: null,
+      height: null,
+      mbti: null,
+      univName: null,
+      email: null,
+      storeProfileName: null,
+    });
+    localStorage.removeItem('auth');
+    navigate('/login');
+  };
 
   return (
     <div>
       <div className='home-banner'>
         <div className='banner-title'>
           <h1>대학교에서 친구 만들어보자, YouthTing.</h1>
-          {auth === null ? (
+          {userInfo.name === null ? (
             <h1
               className='start'
               onClick={() => {
@@ -30,8 +51,9 @@ const Home = () => {
           ) : (
             <>
               <hr />
-              <h1>{auth}님 환영합니다</h1>
+              <h1>{userInfo.name}님 환영합니다</h1>
               <hr />
+              <button onClick={handleLogout}>로그아웃</button>
             </>
           )}
         </div>
@@ -39,23 +61,6 @@ const Home = () => {
       </div>
       <hr />
       <div>***Content currently empty</div>
-      {/* <div style={{ marginTop: '2.5rem' }}>
-        <h1 style={{ marginLeft: '5rem' }}>후기</h1>
-        <div className='reviews'>
-          {dummyData.map((user) => {
-            return (
-              <div key={user.id} className='review'>
-                <div className='user-profile-image'></div>
-                <div className='user-review-info'>
-                  <h5>{user.name}</h5>
-                  <p>{user.stars} / 5점</p>
-                  <p>{user.description}</p>
-                </div>
-              </div>
-            );
-          })}
-        </div>
-      </div> */}
     </div>
   );
 };
