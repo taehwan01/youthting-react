@@ -1,4 +1,5 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
+import { Toaster } from 'react-hot-toast';
 
 import DateSearch from './Pages/DateSearch/DateSearch';
 import Home from './Pages/Home/Home';
@@ -14,6 +15,7 @@ function App() {
   return (
     <div className='App'>
       <Navigation />
+      <Toaster />
       <hr style={{ margin: '0' }} />
       <div className='contents'>
         <Routes>

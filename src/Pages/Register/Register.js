@@ -170,14 +170,6 @@ const Register = () => {
                 value={height}
                 onChange={(event) => setHeight(event.target.value)}
               />
-              {/* <input
-                type='text'
-                className='input-text'
-                placeholder='mbti 입력'
-                required
-                value={mbti}
-                onChange={(event) => setMbti(event.target.value)}
-              /> */}
               <br />
               <select
                 className='select-mbti'
@@ -216,14 +208,6 @@ const Register = () => {
                   setIntro(event.target.value);
                 }}
               ></textarea>
-              {/* <input
-                type='textarea'
-                className='input-text'
-                placeholder='자기소개 입력'
-                required
-                value={intro}
-                onChange={(event) => setIntro(event.target.value)}
-              /> */}
               <br />
               <button className='register-button' disabled={loading}>
                 {loading ? '회원가입 중 ...' : '회원가입하기 !'}
