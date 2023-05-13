@@ -36,8 +36,8 @@ const Register = () => {
     useState('서울특별시 성북구 서경로 124');
   const [univName, setUnivName] = useState('서경대학교');
   const [height, setHeight] = useState('');
-  const [MBTI, setMBTI] = useState('');
-  const [introduction, setIntroduction] = useState('');
+  const [mbti, setMbti] = useState('');
+  const [intro, setIntro] = useState('');
   const [profileImage, setProfileImage] = useState('');
   const [loading, setLoading] = useState(false);
 
@@ -45,28 +45,34 @@ const Register = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    const userInfo = {
+      email,
+      password,
+      name,
+      age,
+      gender,
+      univAddress,
+      univName,
+      height,
+      mbti,
+      intro,
+    };
+    const userBlob = new Blob([JSON.stringify(userInfo)], {
+      type: 'application/json',
+    });
     try {
       setLoading(true);
-      const formdata = new FormData();
-      formdata.append('proFilePicture', profileImage[0]);
-      formdata.append(
-        'userJoinDto',
-        JSON.stringify({
-          email,
-          password,
-          name,
-          age,
-          gender,
-          univAddress,
-          univName,
-          height,
-          MBTI,
-          introduction,
-        }),
-      );
-      console.log(formdata);
+      const formData = new FormData();
+      formData.append('proFilePicture', profileImage[0]);
+      formData.append('userJoinDto', userBlob);
 
-      const { data } = await axios.post(`/add`, formdata, config);
+      const config = {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      };
+
+      const { data } = await axios.post(`/user/add`, formData, config);
       if (data?.error) {
         toast.error(data.error);
       } else {
@@ -128,8 +134,8 @@ const Register = () => {
                   type='radio'
                   className='input-radio'
                   required
-                  value='Man'
-                  checked={gender === 'Man'}
+                  value='MAN'
+                  checked={gender === 'MAN'}
                   onChange={(event) => setGender(event.target.value)}
                 />
                 <label className='radio-label'>남성</label>
@@ -138,9 +144,9 @@ const Register = () => {
                   type='radio'
                   className='input-radio'
                   required
-                  value='Woman'
+                  value='WOMAN'
                   style={{ marginLeft: '2rem' }}
-                  checked={gender === 'Woman'}
+                  checked={gender === 'WOMAN'}
                   onChange={(event) => setGender(event.target.value)}
                 />
                 <label className='radio-label'>여성</label>
@@ -167,24 +173,24 @@ const Register = () => {
               {/* <input
                 type='text'
                 className='input-text'
-                placeholder='MBTI 입력'
+                placeholder='mbti 입력'
                 required
-                value={MBTI}
-                onChange={(event) => setMBTI(event.target.value)}
+                value={mbti}
+                onChange={(event) => setMbti(event.target.value)}
               /> */}
               <br />
               <select
                 className='select-mbti'
-                onChange={(event) => setMBTI(event.target.value)}
-                value={MBTI}
+                onChange={(event) => setMbti(event.target.value)}
+                value={mbti}
               >
                 <option className='option-mbti' value='none'>
-                  MBTI를 골라주세요.
+                  mbti를 골라주세요.
                 </option>
-                {mbtiOptions.map((mbti, index) => {
+                {mbtiOptions.map((option, index) => {
                   return (
-                    <option className='option-mbti' value={mbti} key={index}>
-                      {mbti}
+                    <option className='option-mbti' value={option} key={index}>
+                      {option}
                     </option>
                   );
                 })}
@@ -207,7 +213,7 @@ const Register = () => {
                 rows='9'
                 placeholder='자기소개 입력'
                 onChange={(event) => {
-                  setIntroduction(event.target.value);
+                  setIntro(event.target.value);
                 }}
               ></textarea>
               {/* <input
@@ -215,8 +221,8 @@ const Register = () => {
                 className='input-text'
                 placeholder='자기소개 입력'
                 required
-                value={introduction}
-                onChange={(event) => setIntroduction(event.target.value)}
+                value={intro}
+                onChange={(event) => setIntro(event.target.value)}
               /> */}
               <br />
               <button className='register-button' disabled={loading}>
